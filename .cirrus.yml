@@ -31,3 +31,4 @@ task:
     }
 
     up out/target/product/mido/*.zip
+    rm out/target/product/mido/*.zip
