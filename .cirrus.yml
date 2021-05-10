@@ -8,6 +8,7 @@ task:
         memory: 40G
         volumes:
           - /tmp/mido-AospExtended-Apon77:/tmp/mido-AospExtended-Apon77
+          - /home/cirrus/.ccache:/home/ci/.ccache
   env:
     USE_CCACHE: 1
     CIRRUS_WORKING_DIR: /tmp/mido-AospExtended-Apon77
