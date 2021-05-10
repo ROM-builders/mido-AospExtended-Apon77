@@ -1,9 +1,17 @@
 task:
   name: Build
-  persistent_worker: {}
+  persistent_worker:
+    isolation:
+      container:
+        image: apon77/aosp:latest
+        cpu: 8
+        memory: 40G
+        volumes:
+          - /tmp/mido-AospExtended-Apon77:/tmp/mido-AospExtended-Apon77
+          - /home/cirrus/.ccache:/home/ci/.ccache
   env:
     USE_CCACHE: 1
-    CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
+    CIRRUS_WORKING_DIR: /tmp/mido-AospExtended-Apon77
   clone_script:
     - repo init --depth=1 -u git://github.com/AospExtended/manifest.git -b 11.x || true
   sync_script:
@@ -19,7 +27,7 @@ task:
   upload_script: |
     up() {
       curl --upload-file $1 https://transfer.sh/$(basename $1); echo
-      # 14 days, 10 GB limit
     }
 
     up out/target/product/mido/*.zip
+    rm out/target/product/mido/*.zip
