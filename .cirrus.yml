@@ -5,7 +5,7 @@ task:
     USE_CCACHE: 1
     CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
   clone_script:
-    - repo init --depth=1 -u git://github.com/LineageOS/android.git -b lineage-19.0 || true
+    - repo init --depth=1 -u git://github.com/LineageOS/android.git -b lineage-18.1 || true
   sync_script:
     - rm -rf .repo/local_manifests || true
     - git clone https://github.com/Azure-007/local_manifests.git --depth 1 -b main .repo/local_manifests
